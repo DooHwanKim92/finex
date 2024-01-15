@@ -1,25 +1,27 @@
 <html layout:decorate="~{layout}">
     <div layout:fragment="content">
-        <h4 th:text="${article.subject}"></h4>
-        <div th:text="${article.content}"></div>
+        <label for="subject" th:text="제목"></label>
+        <h4 th:text="${article.subject}" style="width:500px; border:1px solid black"></h4>
+        <label for="content" th:text="내용"></label>
+        <div th:text="${article.content}" style="width:500px; border:1px solid black"></div>
         <br>
         <div>
             <a th:href="@{/article/list}" th:text="게시글목록"
-               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:14px;"></a>
+               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:16px;"></a>
         </div>
         <br>
         <div>
             <a th:href="@{|/article/modify/${article.id}|}" th:text="수정"
                sec:authorize="isAuthenticated()"
                th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
-               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:14px;"></a>
+               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:16px;"></a>
         </div>
         <br>
         <div>
             <a th:href="@{|/article/remove/${article.id}|}" th:text="삭제"
                sec:authorize="isAuthenticated()"
                th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
-               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:14px;"></a>
+               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px; font-size:16px;"></a>
         </div>
     </div>
 </html>

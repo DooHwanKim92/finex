@@ -1,7 +1,7 @@
 <nav th:fragment="navFragment" style="background-color:blue;">
     <ul>
         <li style="list-style:none;">
-            <a th:href="@{/article/list}" th:text="HOME" style="color:#fff; font-weight:bold;"></a>
+            <a th:href="@{/article/list}" th:text="HOME" style="color:#fff; font-weight:bold; font-size:24px; text-decoration:none;"></a>
         </li>
         <li style="list-style:none;">
             <a th:href="@{/user/login}" sec:authorize="isAnonymous()"
@@ -16,7 +16,7 @@
         </li>
         <form th:action="@{/article/list}" method="get">
             <div class="input-group">
-                <input type="text" name="kw" id="search_kw" class="form-control" th:value="${kw}">
+                <input type="text" name="kw" id="kw" class="form-control" th:value="${kw}">
                 <button class="btn btn-outline-secondary" type="submit" id="btn_search">찾기</button>
             </div>
         </form>
