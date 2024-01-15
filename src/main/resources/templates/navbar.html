@@ -1,0 +1,16 @@
+<nav th:fragment="navFragment" style="background-color:blue;">
+    <ul>
+        <li style="list-style:none;">
+            <a th:href="@{/article/list}" th:text="HOME" style="color:#fff; font-weight:bold;"></a>
+        </li>
+        <li style="list-style:none;">
+            <a href="" th:text="로그인" style="color:#fff; font-weight:bold;"></a>
+        </li>
+        <li style="list-style:none;">
+            <a href="" th:text="로그아웃" style="color:#fff; font-weight:bold;"></a>
+        </li>
+        <li  style="list-style:none;">
+            <a th:href="@{/user/signup}" th:text="회원가입" style="color:#fff; font-weight:bold;"></a>
+        </li>
+    </ul>
+</nav>

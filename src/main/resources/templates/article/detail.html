@@ -1,0 +1,15 @@
+<html layout:decorate="~{layout}">
+    <div layout:fragment="content">
+        <h4 th:text="${article.subject}"></h4>
+        <div th:text="${article.content}"></div>
+        <div>
+            <a th:href="@{/article/list}" th:text="게시글목록" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
+        </div>
+        <div>
+            <a th:href="@{|/article/modify/${article.id}|}" th:text="수정" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
+        </div>
+        <div>
+            <a th:href="@{|/article/remove/${article.id}|}" th:text="삭제" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
+        </div>
+    </div>
+</html>
