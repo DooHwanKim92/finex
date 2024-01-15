@@ -3,6 +3,7 @@ package com.example.demo.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,11 @@ public class UserController {
             throw new RuntimeException("비밀번호 2개가 일치하지 않습니다.");
         }
         this.userService.signup(userForm.getUsername(), userForm.getPassword2());
-        return "/";
+        return "redirect:/";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "user/login";
     }
 }

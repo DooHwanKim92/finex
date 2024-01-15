@@ -1,6 +1,7 @@
 package com.example.demo.user;
 
 
+import com.example.demo.article.Article;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,6 @@ public class SiteUser {
     private String username;
 
     @Column
-    private String passowrd;
+    private String password;
+
 }

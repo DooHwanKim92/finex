@@ -6,10 +6,16 @@
             <a th:href="@{/article/list}" th:text="게시글목록" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
         </div>
         <div>
-            <a th:href="@{|/article/modify/${article.id}|}" th:text="수정" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
+            <a th:href="@{|/article/modify/${article.id}|}" th:text="수정"
+               sec:authorize="isAuthenticated()"
+               th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
         </div>
         <div>
-            <a th:href="@{|/article/remove/${article.id}|}" th:text="삭제" style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
+            <a th:href="@{|/article/remove/${article.id}|}" th:text="삭제"
+               sec:authorize="isAuthenticated()"
+               th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
+               style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>
         </div>
     </div>
 </html>

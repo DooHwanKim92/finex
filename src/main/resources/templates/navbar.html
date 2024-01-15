@@ -4,13 +4,21 @@
             <a th:href="@{/article/list}" th:text="HOME" style="color:#fff; font-weight:bold;"></a>
         </li>
         <li style="list-style:none;">
-            <a href="" th:text="로그인" style="color:#fff; font-weight:bold;"></a>
+            <a th:href="@{/user/login}" sec:authorize="isAnonymous()"
+               th:text="로그인" style="color:#fff; font-weight:bold;"></a>
         </li>
         <li style="list-style:none;">
-            <a href="" th:text="로그아웃" style="color:#fff; font-weight:bold;"></a>
+            <a th:href="@{/user/logout}" th:text="로그아웃" sec:authorize="isAuthenticated()"
+               style="color:#fff; font-weight:bold;"></a>
         </li>
         <li  style="list-style:none;">
             <a th:href="@{/user/signup}" th:text="회원가입" style="color:#fff; font-weight:bold;"></a>
         </li>
+        <form th:action="@{/article/list}" method="get">
+            <div class="input-group">
+                <input type="text" name="kw" id="search_kw" class="form-control" th:value="${kw}">
+                <button class="btn btn-outline-secondary" type="submit" id="btn_search">찾기</button>
+            </div>
+        </form>
     </ul>
 </nav>

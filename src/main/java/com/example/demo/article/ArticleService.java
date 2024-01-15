@@ -1,6 +1,7 @@
 package com.example.demo.article;
 
 
+import com.example.demo.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,15 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
 
-    public List<Article> getList() {
-        return this.articleRepository.findAll();
+    public List<Article> getList(String kw) {
+        return this.articleRepository.findAllByKeyword(kw);
     }
 
-    public void create(String subject, String content) {
+    public void create(String subject, String content, SiteUser user) {
         Article article = new Article();
         article.setSubject(subject);
         article.setContent(content);
+        article.setAuthor(user);
         article.setCreateDate(LocalDateTime.now());
         this.articleRepository.save(article);
     }
