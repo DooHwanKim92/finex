@@ -20,6 +20,8 @@
                 </tr>
             </tbody>
         </table>
+        <br>
+        <div sec:authorize="isAnonymous()"> ※게시글 작성은 로그인 후 사용 가능합니다.</div>
         <div>
             <a th:href="@{/article/create}" th:text="게시글등록" sec:authorize="isAuthenticated()"
                style="background-color:blue; text-decoration:none; color:#fff; border-radius:10px;"></a>

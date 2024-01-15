@@ -3,6 +3,7 @@ package com.example.demo.user;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(UserForm userForm) {
         return "user/signup";
     }
 
@@ -30,7 +31,17 @@ public class UserController {
         if(!userForm.getPassword1().equals(userForm.getPassword2())) {
             throw new RuntimeException("비밀번호 2개가 일치하지 않습니다.");
         }
-        this.userService.signup(userForm.getUsername(), userForm.getPassword2());
+        try {
+            this.userService.signup(userForm.getUsername(), userForm.getPassword2());
+        } catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+            return "user/signup";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "user/signup";
+        }
         return "redirect:/";
     }
 

@@ -1,6 +1,9 @@
 <html layout:decorate="~{layout}">
     <div layout:fragment="content">
         <form th:action="@{/article/create}" method="post" th:object="${articleForm}">
+            <div th:if="${#fields.hasAnyErrors()}">
+                <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+            </div>
             <div>
                 <label for="subject" th:text="제목"></label>
                 <input type="text" name="subject" id="subject">
